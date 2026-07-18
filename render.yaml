@@ -1,0 +1,38 @@
+# Render Blueprint for Vaani's telephony backend (the WebSocket engine).
+# Deploy: push this repo to GitHub, then on Render → New → Blueprint → pick the repo.
+# Secrets are marked `sync: false`, so Render asks for them in the dashboard and they
+# never live in git. Oregon keeps the app close to Groq/Deepgram/Cartesia (all US-hosted),
+# which is where most of the per-turn latency actually lives.
+services:
+  - type: web
+    name: vaani-telephony
+    runtime: node
+    rootDir: telephony
+    plan: free
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm run start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # PUBLIC_HOSTNAME is auto-detected on Render via RENDER_EXTERNAL_HOSTNAME (see config.ts) —
+      # no need to set it. Everything below must be entered in the Render dashboard.
+      - key: GROQ_API_KEY
+        sync: false
+      - key: DEEPGRAM_API_KEY
+        sync: false
+      - key: CARTESIA_API_KEY
+        sync: false
+      - key: CARTESIA_VOICE_ID
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_PHONE_NUMBER
+        sync: false

@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# env / secrets
+.env
+.env.local
+.env.*.local
+
+# build output
+dist/
+.next/
+out/
+
+# generated TTS voice auditions
+samples/
+
+# logs
+*.log
+npm-debug.log*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# typescript incremental build info
+*.tsbuildinfo
