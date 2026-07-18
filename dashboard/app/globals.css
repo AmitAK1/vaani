@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-neutral-950 text-neutral-100;
+  /* A soft indigo glow behind the hero, fading into the neutral base. Fixed so it
+     doesn't scroll away, subtle enough not to fight the dashboard's dark cards. */
+  background-image:
+    radial-gradient(60rem 40rem at 70% -10%, rgba(99, 102, 241, 0.16), transparent 60%),
+    radial-gradient(50rem 30rem at 0% 0%, rgba(57, 135, 229, 0.10), transparent 55%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+}
